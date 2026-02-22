@@ -38,5 +38,27 @@
 .markdown-body ul { @apply list-disc pl-6 mb-4 space-y-2; }
 .markdown-body li { @apply text-slate-700; }
 .markdown-body strong { @apply font-semibold text-black; }
-.markdown-body blockquote { @apply border-l-4 border-slate-200 pl-4 italic text-slate-500 my-4; }
+.markdown-body blockquote { @apply border-l-4 border-slate-200 pl-4 italic text-slate-500 my-6 bg-slate-50/50 py-4 pr-4 rounded-r-lg; }
+
+/* Custom Callout Box Styles */
+.callout-box {
+  @apply my-8 p-6 rounded-xl border-l-4 shadow-sm;
+}
+.callout-key-insight {
+  @apply bg-blue-50/50 border-blue-500 text-blue-900;
+}
+.callout-hidden-risk {
+  @apply bg-amber-50/50 border-amber-500 text-amber-900;
+}
+.callout-tactical-edge {
+  @apply bg-emerald-50/50 border-emerald-500 text-emerald-900;
+}
+
+.callout-label {
+  @apply block text-xs font-bold uppercase tracking-widest mb-2;
+}
+
+.markdown-body table { @apply w-full border-collapse my-8 text-sm; }
+.markdown-body th { @apply bg-slate-50 border border-slate-200 p-3 text-left font-bold text-slate-600; }
+.markdown-body td { @apply border border-slate-200 p-3 text-slate-700; }
 

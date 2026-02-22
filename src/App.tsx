@@ -478,7 +478,74 @@ export default function App() {
                   </div>
                 ) : report ? (
                   <div className="markdown-body">
-                    <Markdown>{report}</Markdown>
+                    <Markdown
+                      components={{
+                        blockquote: ({ children }) => {
+                          const content = React.Children.toArray(children).map(child => 
+                            typeof child === 'string' ? child : 
+                            (child as any)?.props?.children?.[0] || ''
+                          ).join('');
+
+                          if (content.includes('[!KEY_INSIGHT]')) {
+                            return (
+                              <div className="callout-box callout-key-insight">
+                                <span className="callout-label">Key Insight</span>
+                                {React.Children.map(children, child => {
+                                  if (typeof child === 'string') return child.replace('[!KEY_INSIGHT]', '');
+                                  if ((child as any)?.props?.children) {
+                                    return React.cloneElement(child as any, {
+                                      children: (child as any).props.children.map((c: any) => 
+                                        typeof c === 'string' ? c.replace('[!KEY_INSIGHT]', '') : c
+                                      )
+                                    });
+                                  }
+                                  return child;
+                                })}
+                              </div>
+                            );
+                          }
+                          if (content.includes('[!HIDDEN_RISK]')) {
+                            return (
+                              <div className="callout-box callout-hidden-risk">
+                                <span className="callout-label">Hidden Risk</span>
+                                {React.Children.map(children, child => {
+                                  if (typeof child === 'string') return child.replace('[!HIDDEN_RISK]', '');
+                                  if ((child as any)?.props?.children) {
+                                    return React.cloneElement(child as any, {
+                                      children: (child as any).props.children.map((c: any) => 
+                                        typeof c === 'string' ? c.replace('[!HIDDEN_RISK]', '') : c
+                                      )
+                                    });
+                                  }
+                                  return child;
+                                })}
+                              </div>
+                            );
+                          }
+                          if (content.includes('[!TACTICAL_EDGE]')) {
+                            return (
+                              <div className="callout-box callout-tactical-edge">
+                                <span className="callout-label">Tactical Edge</span>
+                                {React.Children.map(children, child => {
+                                  if (typeof child === 'string') return child.replace('[!TACTICAL_EDGE]', '');
+                                  if ((child as any)?.props?.children) {
+                                    return React.cloneElement(child as any, {
+                                      children: (child as any).props.children.map((c: any) => 
+                                        typeof c === 'string' ? c.replace('[!TACTICAL_EDGE]', '') : c
+                                      )
+                                    });
+                                  }
+                                  return child;
+                                })}
+                              </div>
+                            );
+                          }
+                          return <blockquote>{children}</blockquote>;
+                        }
+                      }}
+                    >
+                      {report}
+                    </Markdown>
                   </div>
                 ) : (
                   <div className="flex flex-col items-center justify-center py-40 text-slate-300">

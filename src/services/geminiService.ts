@@ -104,36 +104,67 @@ export async function generateDeepReport(seller: SellerInfo, buyer: BuyerInfo) {
   const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
   
   const prompt = `
-    Generate a comprehensive, executive-grade Sales Intelligence Report.
+    Generate an ELITE FOUNDER-GRADE SALES INTELLIGENCE BRIEF.
+    This is a high-stakes document designed for winning enterprise deals.
     
-    SELLER:
-    Name: ${seller.name}
-    Role: ${seller.jobProfile}
-    Company: ${seller.company} (${seller.website})
-    Industry: ${seller.industry}
-    Product: ${seller.productFocus}
-    Value Prop: ${seller.valueProp}
+    SELLER CONTEXT:
+    Name: ${seller.name} | Role: ${seller.jobProfile} | Company: ${seller.company}
+    Product: ${seller.productFocus} | Value Prop: ${seller.valueProp}
     
-    BUYER:
-    Name: ${buyer.name}
-    Title: ${buyer.jobTitle}
-    Company: ${buyer.company} (${buyer.website})
-    Industry: ${buyer.industry}
-    Pain Points: ${buyer.painPoints}
+    BUYER CONTEXT:
+    Name: ${buyer.name} | Title: ${buyer.jobTitle} | Company: ${buyer.company}
+    Industry: ${buyer.industry} | Stated Pain Points: ${buyer.painPoints}
     
-    Follow the exact structure defined in the requirements:
-    SECTION 1 — BUYER SNAPSHOT (Executive Summary)
-    SECTION 2 — BUYER DEEP DIVE (Professional, Psychological, Decision Framework, Priority Signals)
-    SECTION 3 — SELLER POSITIONING (Credibility, Fit, Trust Bridge, Outreach Strategy)
-    SECTION 4 — COMPANY & MARKET INTELLIGENCE
-    SECTION 5 — COMPETITIVE INTELLIGENCE
-    SECTION 6 — PAIN POINT ANALYSIS (Explicit vs Inferred)
-    SECTION 7 — OBJECTION HANDLING PLAYBOOK
-    SECTION 8 — DEAL EXECUTION STRATEGY
-    SECTION 9 — PERSONALIZED OUTREACH (Email, LinkedIn, Discovery Questions)
-    
-    STYLE: McKinsey + Top Sales Strategist. Insight-dense. Professional. No fluff. No emojis.
-    Use "Inference:", "Likely:", "Signal suggests:" for non-verified data.
+    INTELLIGENCE STANDARDS:
+    - Write like a fusion of a Top Strategy Consultant, Elite Enterprise Seller, and Behavioral Psychologist.
+    - No generic fluff. High signal density.
+    - Prefer inference over repetition. Use intelligent deduction.
+    - Label inferred insights clearly (e.g., "Inference:", "Likely:").
+    - Use Markdown for structure.
+    - Use strategic callout boxes using blockquotes with specific prefixes:
+      - > [!KEY_INSIGHT] for critical takeaways.
+      - > [!HIDDEN_RISK] for non-obvious threats.
+      - > [!TACTICAL_EDGE] for specific advantages.
+
+    DOCUMENT STRUCTURE:
+
+    SECTION 1 — BUYER SNAPSHOT
+    - Leadership archetype, Decision identity, Core motivations, Strategic triggers, Recommended engagement posture. (Highly compressed).
+
+    SECTION 2 — DEEP PSYCHOLOGICAL PROFILE
+    - Archetype classification (Empire Builder, Systems Thinker, Visionary Operator, Institutional Guardian, Pragmatic Optimizer).
+    - Identity drivers, Ego sensitivities, Cognitive biases, Emotional activation language, Messaging landmines.
+
+    SECTION 3 — DECISION INTELLIGENCE
+    - Risk tolerance profile, Evidence standards, Decision speed patterns, Objection psychology, Internal validation style.
+
+    SECTION 4 — POWER & POLITICS MAP
+    - Economic buyer, Political influencers, Technical gatekeepers, Silent blockers, Innovation champions.
+    - Influence relationships, Alignment clusters, Friction zones, Access sequencing strategy.
+
+    SECTION 5 — STRATEGIC POSITIONING
+    - Category positioning angles, Narrative reframes, Differentiation strategy, Trust bridge construction.
+
+    SECTION 6 — COMPETITIVE WARFARE ANALYSIS
+    - Incumbent advantages vs. Hidden weaknesses, Overfit zones, Counter-positioning angles, Battlefield reframing.
+
+    SECTION 7 — HIDDEN PAIN ANALYSIS
+    - Explicit pains vs. Inferred organizational friction, Cognitive overload zones, Political risks, Transformation pressure.
+
+    SECTION 8 — OBJECTION NEUROSCIENCE
+    - Surface objection vs. Root fear/belief, Identity risk involved, Strategic response framework.
+
+    SECTION 9 — DEAL EXECUTION BLUEPRINT
+    - Entry strategy, Stakeholder sequencing, Credibility unlock moments, Proof strategy, Momentum tactics, Timing windows.
+
+    SECTION 10 — NON-OBVIOUS STRATEGIC ANGLES
+    - 5 unconventional insights that create asymmetric advantage and reframe the opportunity.
+
+    SECTION 11 — WIN PROBABILITY MODEL
+    - Win likelihood ranges, Key swing factors, Deal-killing risks, Success accelerators. (Use reasoning, not fake precision).
+
+    SECTION 12 — PRECISION OUTREACH
+    - Founder-grade email, High-signal LinkedIn message, 3 authority-creating discovery questions.
   `;
 
   const response = await ai.models.generateContent({
