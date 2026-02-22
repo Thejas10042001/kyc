@@ -104,67 +104,66 @@ export async function generateDeepReport(seller: SellerInfo, buyer: BuyerInfo) {
   const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
   
   const prompt = `
-    Generate an ELITE FOUNDER-GRADE SALES INTELLIGENCE BRIEF.
-    This is a high-stakes document designed for winning enterprise deals.
+    Generate a PREMIUM EXECUTIVE SALES INTELLIGENCE REPORT.
     
-    SELLER CONTEXT:
+    SELLER:
     Name: ${seller.name} | Role: ${seller.jobProfile} | Company: ${seller.company}
     Product: ${seller.productFocus} | Value Prop: ${seller.valueProp}
     
-    BUYER CONTEXT:
+    BUYER:
     Name: ${buyer.name} | Title: ${buyer.jobTitle} | Company: ${buyer.company}
     Industry: ${buyer.industry} | Stated Pain Points: ${buyer.painPoints}
     
-    INTELLIGENCE STANDARDS:
-    - Write like a fusion of a Top Strategy Consultant, Elite Enterprise Seller, and Behavioral Psychologist.
-    - No generic fluff. High signal density.
-    - Prefer inference over repetition. Use intelligent deduction.
-    - Label inferred insights clearly (e.g., "Inference:", "Likely:").
+    REPORT REQUIREMENTS:
+    
+    1. STYLE & FORMATTING:
+    - Tone: McKinsey Partner + Elite Sales Strategist.
+    - Zero fluff. High insight density.
     - Use Markdown for structure.
     - Use strategic callout boxes using blockquotes with specific prefixes:
       - > [!KEY_INSIGHT] for critical takeaways.
       - > [!HIDDEN_RISK] for non-obvious threats.
       - > [!TACTICAL_EDGE] for specific advantages.
+    - Use bold emphasis for critical terms.
+    - Use tables for comparisons where appropriate.
 
-    DOCUMENT STRUCTURE:
+    2. MANDATORY SECTIONS:
+    
+    SECTION 1: EXECUTIVE SNAPSHOT
+    - Leadership Archetype & Communication Posture.
+    - Win Probability Analysis (Likelihood % based on inertia, alignment, category maturity).
+    - Timing Intelligence (Entry windows, urgency triggers).
 
-    SECTION 1 — BUYER SNAPSHOT
-    - Leadership archetype, Decision identity, Core motivations, Strategic triggers, Recommended engagement posture. (Highly compressed).
+    SECTION 2: BUYER COGNITIVE & PSYCHOLOGICAL PROFILE
+    - Archetype Classification: Choose one (Empire Builder, Systems Thinker, Visionary Operator, Institutional Guardian, Pragmatic Optimizer) and explain WHY based on career trajectory.
+    - Ego Drivers: Identity protection, status sensitivities, public vs private self.
+    - Cognitive Bias Map: Decision biases (e.g., Loss Aversion, Status Quo Bias), risk framing style.
+    - Emotional Triggers: Energizing vs. Resistance-creating language.
+    - Identity Threat Zones: Positioning to avoid.
 
-    SECTION 2 — DEEP PSYCHOLOGICAL PROFILE
-    - Archetype classification (Empire Builder, Systems Thinker, Visionary Operator, Institutional Guardian, Pragmatic Optimizer).
-    - Identity drivers, Ego sensitivities, Cognitive biases, Emotional activation language, Messaging landmines.
+    SECTION 3: DECISION POWER & STAKEHOLDER MAP
+    - Hidden Stakeholder Map: Likely influencers, blockers, and silent veto holders.
+    - Power Graph: Economic buyer, Technical buyer, Political gatekeepers, Budget controllers.
+    - Influence Relationships: Who influences whom, alignment clusters, friction zones.
+    - Access Strategy: Who to approach first, who validates credibility, who accelerates.
+    - Blocker Prediction: Roles likely to stall, root cause of resistance, neutralization strategies.
 
-    SECTION 3 — DECISION INTELLIGENCE
-    - Risk tolerance profile, Evidence standards, Decision speed patterns, Objection psychology, Internal validation style.
+    SECTION 4: BUYING COMMITTEE SIMULATION
+    - Predict reactions by role (IT, Finance, Operations, Legal).
+    - Simulated objection handling by role.
 
-    SECTION 4 — POWER & POLITICS MAP
-    - Economic buyer, Political influencers, Technical gatekeepers, Silent blockers, Innovation champions.
-    - Influence relationships, Alignment clusters, Friction zones, Access sequencing strategy.
+    SECTION 5: RISK SURFACE MAPPING
+    - Strategic, Political, Budget Cycle, and Timing risks.
 
-    SECTION 5 — STRATEGIC POSITIONING
-    - Category positioning angles, Narrative reframes, Differentiation strategy, Trust bridge construction.
+    SECTION 6: SELLER POSITIONING & OUTREACH PLAYBOOK
+    - Message-Market Fit & Psychological Overlap.
+    - Personalized Outreach: First email, LinkedIn message, Discovery questions.
+    - Executive Meeting Framing.
 
-    SECTION 6 — COMPETITIVE WARFARE ANALYSIS
-    - Incumbent advantages vs. Hidden weaknesses, Overfit zones, Counter-positioning angles, Battlefield reframing.
-
-    SECTION 7 — HIDDEN PAIN ANALYSIS
-    - Explicit pains vs. Inferred organizational friction, Cognitive overload zones, Political risks, Transformation pressure.
-
-    SECTION 8 — OBJECTION NEUROSCIENCE
-    - Surface objection vs. Root fear/belief, Identity risk involved, Strategic response framework.
-
-    SECTION 9 — DEAL EXECUTION BLUEPRINT
-    - Entry strategy, Stakeholder sequencing, Credibility unlock moments, Proof strategy, Momentum tactics, Timing windows.
-
-    SECTION 10 — NON-OBVIOUS STRATEGIC ANGLES
-    - 5 unconventional insights that create asymmetric advantage and reframe the opportunity.
-
-    SECTION 11 — WIN PROBABILITY MODEL
-    - Win likelihood ranges, Key swing factors, Deal-killing risks, Success accelerators. (Use reasoning, not fake precision).
-
-    SECTION 12 — PRECISION OUTREACH
-    - Founder-grade email, High-signal LinkedIn message, 3 authority-creating discovery questions.
+    INFERENCE RULES:
+    - Use behavioral inference based on company scale and industry norms.
+    - Label non-verified data with "Inference:", "Likely:", or "Signal suggests:".
+    - Never fabricate fake citations.
   `;
 
   const response = await ai.models.generateContent({
