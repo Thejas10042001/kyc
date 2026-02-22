@@ -104,66 +104,36 @@ export async function generateDeepReport(seller: SellerInfo, buyer: BuyerInfo) {
   const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
   
   const prompt = `
-    Generate a PREMIUM EXECUTIVE SALES INTELLIGENCE REPORT.
+    Generate a comprehensive, executive-grade Sales Intelligence Report.
     
     SELLER:
-    Name: ${seller.name} | Role: ${seller.jobProfile} | Company: ${seller.company}
-    Product: ${seller.productFocus} | Value Prop: ${seller.valueProp}
+    Name: ${seller.name}
+    Role: ${seller.jobProfile}
+    Company: ${seller.company} (${seller.website})
+    Industry: ${seller.industry}
+    Product: ${seller.productFocus}
+    Value Prop: ${seller.valueProp}
     
     BUYER:
-    Name: ${buyer.name} | Title: ${buyer.jobTitle} | Company: ${buyer.company}
-    Industry: ${buyer.industry} | Stated Pain Points: ${buyer.painPoints}
+    Name: ${buyer.name}
+    Title: ${buyer.jobTitle}
+    Company: ${buyer.company} (${buyer.website})
+    Industry: ${buyer.industry}
+    Pain Points: ${buyer.painPoints}
     
-    REPORT REQUIREMENTS:
+    Follow the exact structure defined in the requirements:
+    SECTION 1 — BUYER SNAPSHOT (Executive Summary)
+    SECTION 2 — BUYER DEEP DIVE (Professional, Psychological, Decision Framework, Priority Signals)
+    SECTION 3 — SELLER POSITIONING (Credibility, Fit, Trust Bridge, Outreach Strategy)
+    SECTION 4 — COMPANY & MARKET INTELLIGENCE
+    SECTION 5 — COMPETITIVE INTELLIGENCE
+    SECTION 6 — PAIN POINT ANALYSIS (Explicit vs Inferred)
+    SECTION 7 — OBJECTION HANDLING PLAYBOOK
+    SECTION 8 — DEAL EXECUTION STRATEGY
+    SECTION 9 — PERSONALIZED OUTREACH (Email, LinkedIn, Discovery Questions)
     
-    1. STYLE & FORMATTING:
-    - Tone: McKinsey Partner + Elite Sales Strategist.
-    - Zero fluff. High insight density.
-    - Use Markdown for structure.
-    - Use strategic callout boxes using blockquotes with specific prefixes:
-      - > [!KEY_INSIGHT] for critical takeaways.
-      - > [!HIDDEN_RISK] for non-obvious threats.
-      - > [!TACTICAL_EDGE] for specific advantages.
-    - Use bold emphasis for critical terms.
-    - Use tables for comparisons where appropriate.
-
-    2. MANDATORY SECTIONS:
-    
-    SECTION 1: EXECUTIVE SNAPSHOT
-    - Leadership Archetype & Communication Posture.
-    - Win Probability Analysis (Likelihood % based on inertia, alignment, category maturity).
-    - Timing Intelligence (Entry windows, urgency triggers).
-
-    SECTION 2: BUYER COGNITIVE & PSYCHOLOGICAL PROFILE
-    - Archetype Classification: Choose one (Empire Builder, Systems Thinker, Visionary Operator, Institutional Guardian, Pragmatic Optimizer) and explain WHY based on career trajectory.
-    - Ego Drivers: Identity protection, status sensitivities, public vs private self.
-    - Cognitive Bias Map: Decision biases (e.g., Loss Aversion, Status Quo Bias), risk framing style.
-    - Emotional Triggers: Energizing vs. Resistance-creating language.
-    - Identity Threat Zones: Positioning to avoid.
-
-    SECTION 3: DECISION POWER & STAKEHOLDER MAP
-    - Hidden Stakeholder Map: Likely influencers, blockers, and silent veto holders.
-    - Power Graph: Economic buyer, Technical buyer, Political gatekeepers, Budget controllers.
-    - Influence Relationships: Who influences whom, alignment clusters, friction zones.
-    - Access Strategy: Who to approach first, who validates credibility, who accelerates.
-    - Blocker Prediction: Roles likely to stall, root cause of resistance, neutralization strategies.
-
-    SECTION 4: BUYING COMMITTEE SIMULATION
-    - Predict reactions by role (IT, Finance, Operations, Legal).
-    - Simulated objection handling by role.
-
-    SECTION 5: RISK SURFACE MAPPING
-    - Strategic, Political, Budget Cycle, and Timing risks.
-
-    SECTION 6: SELLER POSITIONING & OUTREACH PLAYBOOK
-    - Message-Market Fit & Psychological Overlap.
-    - Personalized Outreach: First email, LinkedIn message, Discovery questions.
-    - Executive Meeting Framing.
-
-    INFERENCE RULES:
-    - Use behavioral inference based on company scale and industry norms.
-    - Label non-verified data with "Inference:", "Likely:", or "Signal suggests:".
-    - Never fabricate fake citations.
+    STYLE: McKinsey + Top Sales Strategist. Insight-dense. Professional. No fluff. No emojis.
+    Use "Inference:", "Likely:", "Signal suggests:" for non-verified data.
   `;
 
   const response = await ai.models.generateContent({
